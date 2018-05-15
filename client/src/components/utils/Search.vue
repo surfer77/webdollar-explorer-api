@@ -40,9 +40,16 @@ export default {
     },
 
     async onSearchAddress (event) {
-      await this.getMiner(this.searchAddress);
-      this.$router.push({ path: `/miner/`+this.miner.address });
+
+      if (this.searchAddress.indexOf("WEBD")>=0){
+        await this.getMiner(this.searchAddress);
+        this.$router.push({ path: `/miner/`+this.miner.address });
+      }else{
+        this.$router.push({ path: `/blocks/`+this.searchAddress });
+      }
+
       this.searchAddress = '';
+
     }
 
   }
